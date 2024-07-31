@@ -35,84 +35,115 @@
 % Question 1
 \subsection*{Q1}
 \begin{enumerate}[label=(\alph*)]
-    \item Yes, the $u.\pi$ can change for some $u \in V$. Assuming node $u$ is at depth $i$. 2 nodes at depth $i-1$ could both have an edge that connects to node $u$. The $u.\pi$ thus depends on which of those nodes you encounter first in your BFS. Thus, the order of the adjaceny matrix CAN affect $u.\pi$
-    \item No, $u.d$ cannot change. A BFS looks through all the nodes away from the source, at each depth away from the source. This means that a BFS, even with ordering changed, will never change the $u.d$ of a node, because it would have found the shortest path in the first place, regardless of order.
+    \item Prove that if a sequence of relaxation steps ever sets $s.\pi$ to non-NIL value, then G contains a negative weight cycle.
+    \item The distance at the source node is 0, so s.d = 0.
+    \item For relaxation to ever make it back to s and change its $\pi$, there would need to be a vertex u, such that 0 > u.d + w(u,v).
+    \item For this to be true, the distance at vertex u or the edge from u must be negative.
+    \item This would mean that there is a negative weight cycle, as s.d would be going below 0.
+
 \end{enumerate}
 
 % Question 2
 \subsection*{Q2}
 \begin{enumerate}[label=(\alph*)]
-    \item DFS on Figure 20.6:
-    \subitem \includegraphics[width=1\textwidth]{dfs20.6.png}
-    \subitem \includegraphics[width=1\textwidth]{classifications.png}
+    \item Graph G - Bellman Ford Algorithm Results
+    \subitem \includegraphics[width=.75\textwidth]{problem2.png}
 \end{enumerate}
 
 % Question 3
 \subsection*{Q3}
 \begin{enumerate}[label=(\alph*)]
-    \item This will always be true. If there is a path between nodes u and v, and u.d < v.d, then depth first search will search through all of u's child nodes until it explores the child that eventually connects to v. This means that v will always be a descendant of u, given the above assumptions.
+    \item Order of Addition of Vertices to Stack: S, A, C, C(lower cost), D, B, B(lower cost), F 
+    \subitem \includegraphics[width=.75\textwidth]{problem3.png} 
 \end{enumerate}
 
 % Question 4
 \subsection*{Q4}
 \begin{enumerate}[label=(\alph*)]
-    \item Topological Sort - alphabetical order
-    \subitem \includegraphics[width=.75\textwidth]{dfs.png}
+    \item Solving System of Difference Constraints
+    \subitem \includegraphics[width=.75\textwidth]{problem4.png}
 \end{enumerate}
 
 % Question 5
 \subsection*{Q5}
 \begin{enumerate}[label=(\alph*)]
-    \item The first G1 shows how this algorithm can find the strongly connected components in a graph and distinguish them from other components. However, the second example illustrates how this cannot always work. The node B and C cannot reach one another if you begin at node C. This is not shown in the tables however, and illustrates why this algorithm does not work for all graphs.
-    \subitem \includegraphics[width=.75\textwidth]{sssc.png}
-\end{enumerate}
+    \item Prove that EXTEND is associative. Essentially show that if EXTEND(EXTEND(A,B),C) = EXTEND(A,EXTEND(B,C)).
+    \subitem (1) We will start by computing the left and right sides of the above equation with the given information.
+    \subitem (2) EXTEND(EXTEND(A,B),C) = $min(min(a_{ij}+b_{jk}) + c_{ij})$
+    \subitem (3) $min(a_{ij}) + min(b_{jk}) + min(c_{ij})$
+    \subitem (4) EXTEND(A, EXTEND(B,C)) = $min(a_{ij}+ min(b_{ij} + c_{jk}))$
+    \subitem (5) $min(a_{ij}) + min(b_{ij}) + min(c_{jk})$
+    \subitem (6) As we can see, these expressions are equivalent and thus proves the associativity of the EXTEND algorithm.
+ \end{enumerate}
 
 % Question 6
 \subsection*{Q6}
 \begin{enumerate}[label=(\alph*)]
-    \item Kruskal Algorithm
-    \subitem \includegraphics[width=.75\textwidth]{kruskal.png}
-    \item Prim Algorithm
-    \subitem \includegraphics[width=.75\textwidth]{prims.png}
+    \item Residual Chart
+    \subitem \includegraphics[width=.75\textwidth]{problem6residual.png}
+    \item Augmenting path that reduces flow on one edge, increases on others.
+    \subitem \includegraphics[width=.75\textwidth]{problem6b.png}
+    \item (s,v,w,x,t). The flow that goes through this path is 1.
+    \item See above for new net flow chart.
 \end{enumerate}
 
 % Question 7
 \subsection*{Q7}
 \begin{enumerate}[label=(\alph*)]
-    \item To prove that an minimum weighted edge between u and v is part of some minimum spanning tree of G, I will use contradiction.
-    \subitem (1) Assumption: There is a minimum spanning tree that does not include the edge from u to v, called S1.
-    \subitem (2) Next, we will add in the edge from u to v to this tree.
-    \subitem (3) This will now form a cycle in the graph.
-    \subitem (4) To remove a loop, we first can look at all the different edges that make up the loop. A loop implies that every vertex in the loop has at least 2 edges coming from it. To remove this loop, we simply need to remove one of the edges that makes up said loop. To do this and maintain minimum spanning, we should remove the edge with the highest weight.
-    \subitem (5) Now we remove an edge other than the one from u to v.
-    \subitem (6) This leaves us with 2 different spanning trees. S1 and S2, where S2 is the minimum spanning tree that now includes the edge from u to v.
-    \subitem (7) weight(S1) - weight(S2) > 0 or  weight(S1) > weight(S2) (THIS IS A CONTRADICTION)
-    \subitem (8) This shows a contradiction as you can find a tree with a lower weight by including the edge from u to v. So by contradiction, the edge from u to v must be in some minimum spanning tree of graph G.
+    \item $f(S,T) = 3+2+6-2-0-0 = 9$
+    \item $c(S,T) = 15+6+15 = 36$
+    \item The following is the min-cut and max-flow of Graph G.
+    \subitem \includegraphics[width=.75\textwidth]{problem7.png}
+    \subitem \includegraphics[width=.75\textwidth]{problem7ff.png}
+    \subitem \includegraphics[width=.75\textwidth]{min-cut.png}
+
 \end{enumerate}
 
-% Question 8 (Graduate students only)
-\subsection*{Q1 (Graduate students only)}
+
+% Question 8
+\subsection*{Q8     }
 \begin{enumerate}[label=(\alph*)]
-    \item Graph G
-    \subitem \includegraphics[width=.75\textwidth]{Grad1.png}
+    \item Johnson's Algorithm, combining Bellman-Ford and Djikstra's Algorithm.
+    \subitem \includegraphics[width=.75\textwidth]{problem8.1.png}
+    \subitem \includegraphics[width=.75\textwidth]{problem8.2.png}
+
 \end{enumerate}
 
 % Question 9 (Graduate students only)
+\subsection*{Q1 (Graduate students only)}
+\begin{enumerate}[label=(\alph*)]
+    \item Psuedocode to count all paths. Basically we're running a DFS style search from each vertex in the graph, and counting each time we hit the goal vertex. This works as each branch of the DFS is a unique path with a distinct start point. To start the DFS from different vertices each time, we will simply reorder the adjaceny matrix each time, until all vertices have been the starting node.
+    \begin{lstlisting}[frame=single]
+        def COUNT-PATHS(Graph G, Vertex v):
+        
+        for vertex in G.V:
+            \\ We will want to complete a DFS
+            \\ for all vertices, and count each
+            \\ time they end in the target Vertex v.
+            G = reorder-adjaceny(G)
+            path_count = DFS(G)
+
+        def DFS(G,v)
+            for each vertex in G.V:
+                count += DFS-visit(G,vertex,count)
+            return count
+        
+        def DFS-visit(G,v,count)
+            for each vertex in G.Adj[u]
+                if vertex != v:
+                    DFS-visit(G,vertex,count)
+                else:
+                    count = count + 1
+            return count
+        \end{lstlisting}
+        \item We also do not care about going over a path that has already been gone over, so the coloring shouldn't matter in this algorithm. We are simply looking to extend each neighbor of each child node until it reaches the goal node.
+\end{enumerate}
+
+% Question 10 (Graduate students only)
 \subsection*{Q2 (Graduate students only)}
 \begin{enumerate}[label=(\alph*)]
-    \item This proof will be quite similar to the one used earlier in question 7.
-    \subitem (1) First, assume that there exists a minimum spanning tree for graph G.
-    \subitem (2) Now, we want to remove and edge and add an edge to this minimum spanning tree.
-    \subitem (3) Case 1: Adding this edge increased the weight of the tree. This means that the new tree is not "minimum" spanning tree.
-    \subitem (4) Case 2: Adding this edge decreased the weight of the tree. This means that the old tree is not "minimum" spanning tree.
-    \subitem (5) In either case, we are able to conclude that once we've absolutely minimized the weight on the minimum spanning tree, any changes to the tree will only increase the weight of it, thus making it not minimum spanning. This means that there is only 1
-
-    \item For a contradiction proof. 
-    \subitem (1) Assume MST2 exist with an edge that is not in MST1, such that w(MST2) = w(MST1).
-    \subitem (2) We will add an edge and remove an edge to form another spanning tree.
-    \subitem (3) Case 1: We add an edge that increases the weight of MST2, such that w(MST2) > w(MST1)
-    \subitem (4) Case 2: We add an edge that decreases the weight of MST2, such that w(MST2) < w(MST1)
-    \subitem (5) Both cases are a contradiction, thus there is only 1 minimum spanning tree when all edges are unique.
+    \item The following chart shows when Djikstra's algorithm will not work with negative edge weights. You can see that the goal state is achieved while all the AB(10) is still in the stack. This remains in the stack, unexplored, because its value is higher than the goal state. Djikstra's Algorithm makes the assumption that the goal node is reached when the lowest possible path to expand is includes the finishing node. You can clearly see that the shortest path actually involves going from B to C, but this algorithm will not explore that.
+    \subitem \includegraphics[width=.75\textwidth]{problemg2.png}
 \end{enumerate}
 
 
